@@ -19,8 +19,8 @@ class StockPriceSuggester:
   'meta,aapl'
   This class prints and saves suggested buy and sell prices.
   """
-  def __init__(self,stock_ticker_list):
-    self.list = stock_ticker_list
+  def __init__(self,stock_ticker_csv):
+    self.list = stock_ticker_csv
     self.today = date.today()
     self.start_date = self.today - timedelta(50)
     self.unresolved_tickers = []
@@ -62,7 +62,7 @@ class StockPriceSuggester:
 
   def __stock_list_to_evaluate(self, user_list):
     """
-    This function accepts a list of stock ticker symbols. this is used to
+    This function accepts a csv of stock ticker symbols. this is used to
     retreive historical stock data that application analyzes to suggest
     the days best buy and sell points
     """
@@ -70,9 +70,9 @@ class StockPriceSuggester:
     #the second holds requested stocks the application fails to recognize.
     user_ticker_list = []
     #capitalize list for uniform formatting while analyzing
-    user_list = str.upper(user_list)
+    user_list_cap = str.upper(user_list)
     #user_input is split into list of strings
-    split_user_input = user_list.split(',')
+    split_user_input = user_list_cap.split(',')
     #loop through user_input and evaluate for valid ticker symbol
     for i in range(0,len(split_user_input)):
       entity_symbol = split_user_input[i].strip()
